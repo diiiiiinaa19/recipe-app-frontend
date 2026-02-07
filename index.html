@@ -84,6 +84,8 @@
         return;
       }
 
+      const loggedUsername = localStorage.getItem('username');
+
       recipes.forEach(recipe => {
         const card = document.createElement("div");
         card.classList.add("recipeCard");
@@ -97,6 +99,36 @@
         container.appendChild(card);
       });
     }
+
+    document.getElementById("recipesContainer").addEventListener("click", async (e) => {
+  if (e.target.classList.contains("deleteBtn")) {
+    const recipeId = e.target.dataset.id;
+    const token = localStorage.getItem("token");
+
+    if (!token) return alert("You must be logged in to delete a recipe");
+
+    if (!confirm("Are you sure you want to delete this recipe?")) return;
+
+    try {
+      const res = await fetch(`${apiBase}/recipes/${recipeId}`, {
+        method: "DELETE",
+        headers: {
+          "Authorization": `Bearer ${token}`
+        }
+      });
+
+      const result = await res.json();
+      alert(result.message);
+
+      if (result.success) {
+        e.target.closest(".recipeCard").remove(); // удаляем карточку из DOM
+      }
+    } catch (err) {
+      console.error(err);
+      alert("Failed to delete recipe");
+    }
+  }
+});
 
     document.getElementById("filterBtn").addEventListener("click", () => {
       const category = document.getElementById("categorySelect").value;
