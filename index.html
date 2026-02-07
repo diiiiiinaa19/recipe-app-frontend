@@ -38,6 +38,7 @@
       if (token) {
         userActions.innerHTML = `
           <button onclick="window.location.href='create.html'">Create Recipe</button>
+          <button onclick="window.location.href='profile.html'">Profile</button>
           <button onclick="logout()">Logout</button>
         `;
       } else {
@@ -86,13 +87,19 @@
         card.innerHTML = `
           <h3 onclick="window.location.href='recipe.html?id=${recipe._id}'">${recipe.title}</h3>
           <p><strong>Category:</strong> ${recipe.category}</p>
-          <p><strong>Cooking Time:</strong> ${recipe.cookingTime} min | <strong>Servings:</strong> ${recipe.servings}</p>
+          <p><strong>Time:</strong> ${recipe.cookingTime} min | <strong>Servings:</strong> ${recipe.servings}</p>
           <p><strong>Author:</strong> ${recipe.author.username}</p>
-          <p>${recipe.description}</p>
-          ${userId && userId === recipe.author._id ? `<button class="deleteBtn" data-id="${recipe._id}">Delete</button>` : ''}
+          <p class="description">${recipe.description}</p>
+    
+          ${userId && userId === recipe.author._id ? `
+            <div class="cardActions">
+              <button class="editBtn" onclick="window.location.href='edit-recipe.html?id=${recipe._id}'">Edit</button>
+              <button class="deleteBtn" data-id="${recipe._id}">Delete</button>
+            </div>
+          ` : ''}
         `;
         container.appendChild(card);
-      });
+     });
     }
 
     document.getElementById("filterBtn").addEventListener("click", () => {

@@ -201,3 +201,164 @@ li {
     gap: 15px;
   }
 }
+
+/* Контейнер для кнопок внизу карточки */
+.cardActions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 20px;
+  padding-top: 15px;
+  border-top: 1px solid #f0f0f0; /* Легкая разделительная линия */
+}
+
+/* Кнопка Edit (Голубая/Спокойная) */
+.editBtn {
+  background-color: #5dade2; 
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  width: auto; /* Чтобы кнопка не растягивалась */
+}
+
+.editBtn:hover {
+  background-color: #3498db;
+  transform: translateY(-1px);
+}
+
+/* Кнопка Delete (Красная/Предупреждающая) */
+.deleteBtn {
+  background-color: #ffefee;
+  color: #ff4d4f;
+  border: 1px solid #ffccc7;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  width: auto;
+}
+
+.deleteBtn:hover {
+  background-color: #ff4d4f;
+  color: white;
+}
+
+/* Специальный стиль для широкой формы редактирования */
+.edit-wide {
+  max-width: 500px !important; /* Делаем чуть шире, чтобы полям было просторно */
+}
+
+/* Группировка полей */
+.form-section {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.form-section label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--primary);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 4px;
+}
+
+.flex-row {
+  display: flex;
+  gap: 15px;
+}
+
+.form-group {
+  flex: 1;
+  text-align: left;
+}
+
+.form-group label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 5px;
+}
+
+/* Улучшаем текстовые поля */
+textarea#ingredients, textarea#instructions {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.save-btn {
+  margin-top: 10px;
+  font-size: 1.1rem;
+  padding: 12px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-top: 15px;
+  text-decoration: none;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.back-link:hover {
+  color: var(--primary);
+}
+/* Основной контейнер формы редактирования */
+.auth-container.edit-clean {
+  width: 450px !important;
+  max-width: 95% !important;
+}
+
+/* Каждая группа (надпись + инпут) */
+.input-group {
+  margin-bottom: 20px; /* Увеличили отступ между полями */
+  text-align: left;
+}
+
+/* Черная надпись строго над полем */
+.input-group label {
+  display: block;
+  font-weight: 700; /* Жирный */
+  color: #000000;   /* Черный */
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+/* Стили полей ввода */
+.input-group input, 
+.input-group textarea, 
+.input-group select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-sizing: border-box;
+  margin-bottom: 0 !important; /* Убираем лишний отступ снизу инпута */
+}
+
+/* Кнопка сохранения */
+.save-btn {
+  width: 100%;
+  padding: 14px;
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.save-btn:hover {
+  background-color: var(--primary-hover);
+}
