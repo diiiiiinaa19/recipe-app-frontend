@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>View Recipe</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="recipe-page">
+  <header class="recipe-header">
+    <h1>Recipe Details</h1>
+    <a href="index.html">← Back to Home</a>
+  </header>
+
+  <main id="recipeContainer" class="recipe-main">
+    <p>Loading recipe...</p>
+  </main>
+
+  <script>
+    const apiBase = "https://recipe-app-9ml5.onrender.com/api";
+    const recipeContainer = document.getElementById('recipeContainer');
+
+    // Получаем id из URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const recipeId = urlParams.get('id');
+
+    if (!recipeId) {
+      recipeContainer.innerHTML = "<p>Recipe not found.</p>";
+    } else {
+      fetch(`${apiBase}/recipes/${recipeId}`)
+        .then(res => res.json())
+        .then(data => {
+          if (!data.success) {
+            recipeContainer.innerHTML = "<p>Recipe not found.</p>";
+            return;
+          }
+          const recipe = data.data;
+          recipeContainer.innerHTML = `
+            <h2>${recipe.title}</h2>
+            <p><strong>Category:</strong> ${recipe.category}</p>
+            <p><strong>Cooking Time:</strong> ${recipe.cookingTime} min</p>
+            <p><strong>Servings:</strong> ${recipe.servings}</p>
+            <p><strong>Author:</strong> ${recipe.author.username}</p>
+            <h3>Description:</h3>
+            <p>${recipe.description}</p>
+            <h3>Ingredients:</h3>
+            <ul>${recipe.ingredients.map(i => `<li>${i}</li>`).join('')}</ul>
+            <h3>Instructions:</h3>
+            <ol>${recipe.instructions.map(i => `<li>${i}</li>`).join('')}</ol>
+          `;
+        })
+        .catch(err => {
+          console.error(err);
+          recipeContainer.innerHTML = "<p>Failed to load recipe.</p>";
+        });
+    }
+  </script>
+</body>
+</html>
